@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::group([], function (){
-    Route::match(['get', 'post'], '/', ['uses'=>'IndexController@action', 'as'=>'home']);
+
+    Route::match(['get', 'post'], '/', ['uses'=>'HomeController@index', 'as'=>'home']);
+
+    Route::get('/{user}/{site}/pixel.gif', 'AnaliseController@execute')->name('analise');
+
+    Auth::routes();
+
 });
+
+
+
+
