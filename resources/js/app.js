@@ -17,8 +17,16 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('prop-component', require('./components/PropComponent.vue'));
+Vue.component('ajax-grid-component', require('./components/AjaxGridComponent.vue'));
+Vue.component('ajax-table-component', require('./components/AjaxTableComponent.vue'));
 
 
-const app = new Vue({
-    el: '#app'
+/*new Vue({
+    el: '#app',
+});*/
+
+new Vue({
+    el: '#app',
+
 });
+

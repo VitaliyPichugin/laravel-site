@@ -14,33 +14,28 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <div id="app">
+                            <header >
+                                <nav class="nav">
+                                    <button  @click="switchView('table')" class="btn btn-info switch-view" >View 1</button>
+                                    <button  @click="switchView('grid')" class="btn btn-info switch-view" >View 2</button>
+                                </nav>
+                            </header>
 
-                        @if($data['count_all_time'])
-                            <p>Name: {{$data['name']}}</p>
-                            <p>Email: {{$data['email']}}</p>
-                            <p>Всего просмотров: {{$data['count_all_time']}}</p>
+                           <ajax-grid-component></ajax-grid-component>
+                          {{-- <ajax-table-component></ajax-table-component>--}}
 
-                            <prop-component datas="{{json_encode($data['data'])}}"></prop-component>
-
-
-                          {{--  <table class="table table-striped">
-                                <tr>
-                                    <th>Site ID</th>
-                                    <th>User Agent</th>
-                                    <th>Date/Time</th>
-                                </tr>
-                                @foreach($data['data'] as $k => $v)
-                                    <tr>
-                                        <th>{{$v['site_id']}}</th>
-                                        <th>{{$v['user_agent']}}</th>
-                                        <th>{{$v['date_show']}}</th>
-                                    </tr>
-                                @endforeach
-                            </table>--}}
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+{{--
+<script>
+    import AjaxGridComponent from "../js/components/AjaxGridComponent";
+    export default {
+        components: {AjaxGridComponent}
+    }
+</script>--}}

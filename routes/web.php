@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([], function (){
 
-    Route::match(['get', 'post'], '/', ['uses'=>'HomeController@index', 'as'=>'home']);
+    Route::match(['get', 'post'], '/', 'HomeController@index')->name('home');
+
+    Route::get('/get-ajax', 'HomeController@getAjax');
 
     Route::get('/{user}/{site}/pixel.gif', 'AnaliseController@execute')->name('analise');
 

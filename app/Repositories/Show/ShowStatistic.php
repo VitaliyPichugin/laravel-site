@@ -18,9 +18,9 @@ class ShowStatistic
       $this->user = $usr;
     }
 
-    public function GetAllStatisticUser()
+    public function GetAllStatisticUser(User $user)
     {
-        $user = $this->user->find(Auth::id())->statistics();
+        $user = $user->statistics();
 
         return $this->parseData($user->get());
     }
@@ -29,10 +29,14 @@ class ShowStatistic
     {
         $query = $this->user->newQuery();
 
-        $today = $query->whereDay('created_at', '=', Carbon::now()
-            ->subDay($subDay)
-            ->format('d'))
-            ->get();
+        $today = $query->whereDay(
+            'created_at',
+            '=',
+            Carbon::now()
+                ->subDay($subDay)
+                ->format('d')
+        )
+        ->get();
 
         return $this->parseData($today);
     }
@@ -47,15 +51,11 @@ class ShowStatistic
             $stata[$key]['date_show'] = $val->created_at;
         }
 
-        $data = [
+        return collect( [
             'name' => $this->user->name,
             'email' => $this->user->email,
             'data' => $stata,
             'count_all_time' => count($stata),
-          //  'to_day' => $this->GetStatisticRangeTime(1)
-        ];
-
-        return $data;
+        ]);
     }
-
 }

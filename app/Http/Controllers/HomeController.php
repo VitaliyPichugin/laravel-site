@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Support\Facades\Auth;
 use App\Repositories\Show\ShowStatistic;
 
 class HomeController extends Controller
@@ -19,8 +17,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        dd(json_encode($this->data->GetAllStatisticUser()));
-        $this->data->GetStatisticRangeTime();
-        return view('home', ['data' => $this->data->GetAllStatisticUser()]);
+        return view('home');
+    }
+
+    public function getAjax()
+    {
+        return $this->data->GetAllStatisticUser(\Auth::user());
     }
 }
